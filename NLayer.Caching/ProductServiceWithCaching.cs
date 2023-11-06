@@ -26,9 +26,9 @@ namespace NLayer.Caching
             _memoryCache = memoryCache;
             _mapper = mapper;
 
-            if(_memoryCache.TryGetValue(CacheProductKey, out _))
+            if(!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
-                _memoryCache.Set(CacheProductKey, _repository.GetProductWithCategory());
+                _memoryCache.Set(CacheProductKey, _repository.GetProductWithCategory().Result);
             }
         }
 
