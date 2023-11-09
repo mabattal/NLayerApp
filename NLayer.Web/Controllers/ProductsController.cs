@@ -65,7 +65,7 @@ namespace NLayer.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(ProductDto productDto)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
                 return RedirectToAction(nameof(Index));
