@@ -18,12 +18,12 @@ namespace NLayer.Service.Services
             _productRepository = productRepository;
         }
 
-        public async Task<List<ProductWithCategoryDto>> GetProductWithCategory()
+        public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory()
         {
             var products = await _productRepository.GetProductWithCategory();
             var productsDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
-            return productsDto;
+            return CustomResponseDto<List<ProductWithCategoryDto>>.Successs(200, productsDto);
         }
     }
 }
